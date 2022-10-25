@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import './app.css';
 import { useAppDispatch } from './hooks/store';
 import { fetchGroups } from './store/groupsSlice';
 import { fetchUsers } from './store/usersSlice';
