@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { GroupsList } from './components/groupsList';
-import { UsersList } from './components/usersList';
 import { useAppDispatch } from './hooks/store';
 import { fetchGroups } from './store/groupsSlice';
 import { fetchUsers } from './store/usersSlice';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './pages/home';
+import { CreateGroup } from './pages/createGroup';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -17,8 +18,10 @@ function App() {
   return (
     <main className="w-full h-full p-4 bg-slate-100 flex flex-col">
       <h1 className="text-center mb-2">Users Management</h1>
-      <GroupsList />
-      <UsersList />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="create-group" element={<CreateGroup />} />
+      </Routes>
     </main>
   );
 }
