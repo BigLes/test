@@ -43,7 +43,9 @@ export const UsersList = () => {
         {filteredUsers.map(item => (
           <li
             className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
-            key={item.id}>{item.name}</li>
+            key={item.id}>
+            <Link to={`user/${item.id}`}>{item.name}</Link>
+          </li>
         ))}
       </ul>
     </section>

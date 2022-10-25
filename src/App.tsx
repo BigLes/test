@@ -8,6 +8,7 @@ import { Home } from './pages/home';
 import { CreateGroup } from './pages/createGroup';
 import { CreateUser } from './pages/createUser';
 import { GroupProfile } from './pages/groupProfile';
+import { UserProfile } from './pages/userProfile';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ function App() {
         <Route path="create-group" element={<CreateGroup />} />
         <Route path="create-user" element={<CreateUser />} />
         <Route path="group/:id" element={<GroupProfile />} />
+        <Route path="user/:id" element={<UserProfile />} />
       </Routes>
     </main>
   );

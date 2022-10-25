@@ -1,9 +1,12 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../hooks/store';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../hooks/store';
+import { deleteGroup } from '../store/groupsSlice';
 
 export const GroupProfile = () => {
   const params = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { items } = useAppSelector(state => state.groups);
   const users = useAppSelector(state => state.users.items);
 
@@ -24,7 +27,12 @@ export const GroupProfile = () => {
     }</ul>
     {!groupUser.length && (
       <div className="flex justify-center w-full mt-4">
-        <button className="text-center p-2 border border-red-500 rounded mb-2">DELETE GROUP</button>
+        <button
+          onClick={() => {
+            dispatch(deleteGroup(idNumber))
+              .then(() => navigate('/'))
+          }}
+          className="text-center p-2 border border-red-500 rounded mb-2">DELETE GROUP</button>
       </div>
     )}
   </div>
