@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Group } from '../models';
-import { fetchGroupsApi } from '../api';
+import { createGroupApi, deleteGroupApi, fetchGroupsApi } from '../api';
 
 export interface GroupsState {
   loading: boolean;
@@ -15,6 +15,13 @@ export const initialState: GroupsState = {
 };
 
 export const fetchGroups = createAsyncThunk<Array<Group>>('groups/fetch', fetchGroupsApi);
+export const createGroup = createAsyncThunk(
+  'groups/create', (body: { name: string }, thunkAPI) => createGroupApi(body)
+    .then(() => thunkAPI.dispatch(fetchGroups()))
+);
+export const deleteGroup = createAsyncThunk(
+  'groups/delete', (id: number, thunkAPI) => deleteGroupApi(id)
+    .then(() => thunkAPI.dispatch(fetchGroups())));
 
 const groupsSlice = createSlice({
   name: 'groups',

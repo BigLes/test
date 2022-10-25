@@ -43,10 +43,10 @@ let users = [{
 }];
 let usersId = 6;
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-  res.setHeader('access-control-allow-origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
   next();
 });
 
@@ -61,6 +61,7 @@ app.get('/users', (req, res) => {
 // POST
 app.post('/groups', (req, res) => {
   const id = ++groupsId;
+  console.log(req.body);
   const { name } = req.body;
   if (!name) {
     return res.status(400).send('Body is incorrect');

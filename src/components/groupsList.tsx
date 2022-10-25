@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
 import { setGroupsSearch } from '../store/groupsSlice';
+import { Link } from 'react-router-dom';
 
 export const GroupsList = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ export const GroupsList = () => {
         <h2 className="uppercase inline mr-2">Groups:</h2>
         <input
           value={search}
-          className="rounded border border-slate-300 h-7"
+          className="rounded border border-slate-300 h-7 px-1"
           onChange={e => dispatch(setGroupsSearch(e.target.value))} />
         {!!search && (
           <button
@@ -27,10 +28,13 @@ export const GroupsList = () => {
         )}
       </div>
       <ul className="overflow-x-auto whitespace-nowrap">
-        {items.map(item => (
+        <Link to="create-group">
+          <li className="h-16 w-16 leading-16 text-center inline-block align-bottom	border border-slate-300 rounded mr-2">+</li>
+        </Link>
+          {items.map(item => (
           <li
             style={{ borderColor: item.color }}
-            className="h-16 w-16 leading-16 text-center inline-block align-bottom	border border-slate-300 rounded mr-2"
+            className="h-16 w-16 leading-16 text-center inline-block align-bottom	border rounded mr-2"
             key={item.id}>{item.name}</li>
         ))}
       </ul>

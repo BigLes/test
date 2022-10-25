@@ -6,6 +6,7 @@ import { fetchUsers } from './store/usersSlice';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/home';
 import { CreateGroup } from './pages/createGroup';
+import { CreateUser } from './pages/createUser';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="create-group" element={<CreateGroup />} />
+        <Route path="create-user" element={<CreateUser />} />
       </Routes>
     </main>
   );
