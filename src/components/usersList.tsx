@@ -20,16 +20,16 @@ export const UsersList = () => {
 
   return (
     <section className="overflow-hidden flex-grow flex flex-col">
-      <div className="mb-2">
-        <h2 className="uppercase inline mr-2">Users:</h2>
+      <div className="mb-2 flex">
+        <h2 className="uppercase inline mr-2 h-10 leading-10">Users:</h2>
         <input
           value={search}
-          className="rounded border border-slate-300 h-7 px-1"
+          className="rounded border border-slate-300 h-10 px-1"
           onChange={e => dispatch(setUserSearch(e.target.value))} />
         <UserGroupSelection selectedGroup={selectedGroup} onChange={e => dispatch(setSelectedGroup(e))} />
         {(!!search || selectedGroup) && (
           <button
-            className="px-1 h-7 border border-slate-300 rounded ml-2 inline-block"
+            className="px-1 h-10 border border-slate-300 rounded ml-2 inline-block"
             onClick={() => {
               dispatch(setSelectedGroup(null));
               dispatch(setUserSearch(''));

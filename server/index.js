@@ -39,7 +39,7 @@ let users = [{
 }, {
   id: 6,
   name: 'Spider-Man',
-  groups: [1],
+  groups: [2],
 }];
 let usersId = 6;
 
