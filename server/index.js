@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
   next();
 });
 
@@ -100,6 +100,27 @@ app.delete('/users/:userId', (req, res) => {
   users = users.filter(item => item.id !== userId);
   res.json({ userId });
 });
+
+//PUT
+app.put('/users/:userId/:groupId/', (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const groupId = parseInt(req.params.groupId, 10);
+
+  const user = users.filter(item => item.id === userId)[0];
+
+  if (!user) {
+    return res.status(403).send('No such user');
+  }
+
+  if (user.groups.includes(groupId)) {
+    // MODIFYING OBJECT (DON'T DO IT LIKE ME HE-HE-HE)
+    user.groups = user.groups.filter(item => item !== groupId);
+  } else {
+    // AGAIN...
+    user.groups = [...user.groups, groupId];
+  }
+  res.json({ userId });
+})
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

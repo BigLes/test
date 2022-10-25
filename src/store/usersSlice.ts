@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../models';
-import { createUserApi, deleteUserApi, fetchUsersApi } from '../api';
+import { createUserApi, deleteUserApi, fetchUsersApi, toggleGroupForUserApi } from '../api';
 
 export interface UsersState {
   loading: boolean;
@@ -23,6 +23,9 @@ export const createUser = createAsyncThunk(
 );
 export const deleteUser = createAsyncThunk(
   'users/delete', (id: number, thunkAPI) => deleteUserApi(id)
+    .then(() => thunkAPI.dispatch(fetchUsers())));
+export const toggleGroupForUser = createAsyncThunk(
+  'users/put', ({ userId, groupId }: { userId: number, groupId: number }, thunkAPI) => toggleGroupForUserApi(userId, groupId)
     .then(() => thunkAPI.dispatch(fetchUsers())));
 
 const usersSlice = createSlice({

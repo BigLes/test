@@ -39,3 +39,8 @@ export const deleteUserApi = (id: number): Promise<string> =>
   fetch(`http://localhost:3001/users/${id}`, { method: 'delete' })
     .then(res => res.status === 200 ? res.json() : Promise.reject(res.statusText))
     .then(json => json.groupId);
+
+export const toggleGroupForUserApi = (userId: number, groupId: number): Promise<string> =>
+  fetch(`http://localhost:3001/users/${userId}/${groupId}`, { method: 'PUT' })
+    .then(res => res.status === 200 ? res.json() : Promise.reject(res.statusText))
+    .then(json => json.groupId);

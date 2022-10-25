@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { deleteUser } from '../store/usersSlice';
+import { deleteUser, toggleGroupForUser } from '../store/usersSlice';
 
 export const UserProfile = () => {
   const params = useParams<{ id: string }>();
@@ -22,6 +22,10 @@ export const UserProfile = () => {
       userGroups
         .map(item => (
           <li
+            onClick={() => {
+              dispatch(toggleGroupForUser({ userId: idNumber, groupId: item.id }))
+                .then(() => navigate(`/user/${idNumber}`))
+            }}
             className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
             key={item.id}>{item.name}</li>
         ))
@@ -29,7 +33,7 @@ export const UserProfile = () => {
     <div className="flex justify-center w-full mt-4">
       <button
         onClick={() => {
-          dispatch(deleteUser(idNumber)).then(() => navigate('/'))
+          dispatch(deleteUser(idNumber)).then(() => navigate(`/user/${idNumber}`))
         }}
         className="text-center p-2 border border-red-500 rounded mb-2">DELETE USER</button>
     </div>
