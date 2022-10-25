@@ -29,8 +29,7 @@ export const GroupProfile = () => {
       <div className="flex justify-center w-full mt-4">
         <button
           onClick={() => {
-            dispatch(deleteGroup(idNumber))
-              .then(() => navigate('/'))
+            dispatch(deleteGroup(idNumber)).then(() => navigate('/'));
           }}
           className="text-center p-2 border border-red-500 rounded mb-2">DELETE GROUP</button>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/store';
 import { createGroup } from '../store/groupsSlice';
-import { useNavigate } from 'react-router-dom';
 
 export const CreateGroup = () => {
   const navigate = useNavigate();

@@ -5,7 +5,8 @@ import { deleteUser } from '../store/usersSlice';
 
 export const UserProfile = () => {
   const params = useParams<{ id: string }>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const { items } = useAppSelector(state => state.users);
   const groups = useAppSelector(state => state.groups.items);
@@ -28,8 +29,7 @@ export const UserProfile = () => {
     <div className="flex justify-center w-full mt-4">
       <button
         onClick={() => {
-          dispatch(deleteUser(idNumber))
-            .then(() => navigate('/'))
+          dispatch(deleteUser(idNumber)).then(() => navigate('/'))
         }}
         className="text-center p-2 border border-red-500 rounded mb-2">DELETE USER</button>
     </div>
