@@ -71,13 +71,14 @@ app.post('/groups/:name', (req, res) => {
 app.post('/users/:name/:group', (req, res) => {
   const id = ++usersId;
   const { name, group } = req.params;
+  const groupNumber = parseInt(group, 10);
   if (!name || !group) {
     return res.status(400).send('Body is incorrect');
   }
-  if (!groups.some(item => item.id === group)) {
+  if (!groups.some(item => item.id === groupNumber)) {
     return res.status(403).send('No such group');
   }
-  users.push({ id, name, groups: [group] });
+  users.push({ id, name, groups: [groupNumber] });
   res.json({ id });
 });
 
