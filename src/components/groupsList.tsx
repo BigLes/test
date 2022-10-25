@@ -19,10 +19,10 @@ export const GroupsList = () => {
           className="rounded border border-slate-300"
           onChange={e => dispatch(setGroupsSearch(e.target.value))} />
       </div>
-      <ul className="py-2">
+      <ul className="overflow-x-auto whitespace-nowrap">
         {items.map(item => (
           <li
-            className="h-16 w-16 text-center inline-block p-2 border border-slate-300 rounded mr-2"
+            className="h-16 w-16 leading-16 text-center inline-block align-bottom	border border-slate-300 rounded mr-2"
             key={item.id}>{item.name}</li>
         ))}
       </ul>
