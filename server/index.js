@@ -102,7 +102,7 @@ app.delete('/users/:userId', (req, res) => {
 });
 
 //PUT
-app.put('/users/:userId/:groupId/', (req, res) => {
+app.delete('/users/:userId/:groupId/', (req, res) => {
   const userId = parseInt(req.params.userId, 10);
   const groupId = parseInt(req.params.groupId, 10);
 

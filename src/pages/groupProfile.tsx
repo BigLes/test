@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
 import { deleteGroup } from '../store/groupsSlice';
+import { toggleGroupForUser } from '../store/usersSlice';
 
 export const GroupProfile = () => {
   const params = useParams<{ id: string }>();
@@ -21,7 +22,8 @@ export const GroupProfile = () => {
       groupUser
         .map(item => (
           <li
-            className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
+            onClick={() => dispatch(toggleGroupForUser({ userId: item.id, groupId: idNumber }))}
+            className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2 cursor-pointer"
             key={item.id}>{item.name}</li>
         ))
     }</ul>
@@ -29,7 +31,7 @@ export const GroupProfile = () => {
       <div className="flex justify-center w-full mt-4">
         <button
           onClick={() => {
-            dispatch(deleteGroup(idNumber)).then(() => navigate('/'));
+            dispatch(deleteGroup(idNumber)).then(() => navigate('/'))
           }}
           className="text-center p-2 border border-red-500 rounded mb-2">DELETE GROUP</button>
       </div>
