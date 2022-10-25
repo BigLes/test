@@ -15,7 +15,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <main className="w-full h-full p-4 bg-slate-100">
+    <main className="w-full h-full p-4 bg-slate-100 flex flex-col">
       <h1 className="text-center mb-2">Users Management</h1>
       <GroupsList />
       <UsersList />

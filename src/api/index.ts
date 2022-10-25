@@ -6,6 +6,7 @@ export const fetchGroupsApi = (): Promise<Array<Group>> => fetch('http://localho
   .then(array => array.map(item => ({
     id: parseInt(item.id, 10),
     name: item.name,
+    color: item.color,
   })));
 
 export const fetchUsersApi = (): Promise<Array<User>> => fetch('http://localhost:3001/users')

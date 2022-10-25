@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { setUserSearch } from '../store/usersSlice';
+import { setSelectedGroup, setUserSearch } from '../store/usersSlice';
+import { UserGroupSelection } from './userGroupSelection';
 
 export const UsersList = () => {
   const dispatch = useAppDispatch();
-  const { loading, search, items } = useAppSelector(state => state.users);
+  const { loading, search, items, selectedGroup } = useAppSelector(state => state.users);
+
+  const filteredUsers = useMemo(() => items.filter(item => {
+    return selectedGroup
+      ? item.groups.includes(selectedGroup) && item.name.toUpperCase().includes(search.toUpperCase())
+      : item.name.toUpperCase().includes(search.toUpperCase())
+  }), [items, search, selectedGroup]);
 
   if (loading && !items.length) {
     return <div>'Loading...'</div>;
   }
 
   return (
-    <section>
+    <section className="overflow-hidden flex-grow flex flex-col">
       <div className="mb-2">
         <h2 className="uppercase inline mr-2">Users:</h2>
         <input
           value={search}
-          className="rounded border border-slate-300"
+          className="rounded border border-slate-300 h-7 px-1"
           onChange={e => dispatch(setUserSearch(e.target.value))} />
+        <UserGroupSelection selectedGroup={selectedGroup} onChange={e => dispatch(setSelectedGroup(e))} />
+        {(!!search || selectedGroup) && (
+          <button
+            className="px-1 h-7 border border-slate-300 rounded ml-2 inline-block"
+            onClick={() => {
+              dispatch(setSelectedGroup(null));
+              dispatch(setUserSearch(''));
+            }}>Clear</button>
+        )}
       </div>
-      <ul className="">
-        {items.map(item => (
+      <ul className="overflow-y-auto">
+        {filteredUsers.map(item => (
           <li
             className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
             key={item.id}>{item.name}</li>

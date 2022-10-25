@@ -6,12 +6,14 @@ export interface UsersState {
   loading: boolean;
   items: Array<User>;
   search: string;
+  selectedGroup: number | null;
 }
 
 export const initialState: UsersState = {
   loading: false,
   items: [],
   search: '',
+  selectedGroup: null
 };
 
 export const fetchUsers = createAsyncThunk<Array<User>>('users/fetch', fetchUsersApi);
@@ -23,6 +25,9 @@ const usersSlice = createSlice({
     setUserSearch: (state, { payload }: PayloadAction<string>) => {
       state.search = payload;
     },
+    setSelectedGroup: (state, { payload }: PayloadAction<number | null>) => {
+      state.selectedGroup = payload;
+    }
   },
   extraReducers: builder => {
     builder.addCase(fetchUsers.pending, (state) => {
@@ -39,7 +44,7 @@ const usersSlice = createSlice({
 });
 
 export const {
-  setUserSearch,
+  setUserSearch, setSelectedGroup
 } = usersSlice.actions;
 
 export const usersSliceReducer = usersSlice.reducer;

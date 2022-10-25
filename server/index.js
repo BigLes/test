@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const randomColor = require('randomcolor');
 const app = express();
 const port = 3001;
 
@@ -7,9 +8,11 @@ const port = 3001;
 let groups = [{
   id: 1,
   name: 'DC',
+  color: '#0476f2',
 }, {
   id: 2,
   name: 'Marvel',
+  color: '#F0131E',
 }];
 let groupsId = 2;
 
@@ -62,7 +65,7 @@ app.post('/groups', (req, res) => {
   if (!name) {
     return res.status(400).send('Body is incorrect');
   }
-  groups.push({ id, name });
+  groups.push({ id, name, color: randomColor() });
   res.json({ id });
 });
 app.post('/users', (req, res) => {
