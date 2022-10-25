@@ -11,13 +11,20 @@ export const GroupsList = () => {
   }
 
   return (
-    <section>
-      <div>
-        <span>Groups:</span>
-        <input value={search} onChange={e => dispatch(setGroupsSearch(e.target.value))} />
+    <section className="mb-4">
+      <div className="mb-2">
+        <h2 className="uppercase inline mr-2">Groups:</h2>
+        <input
+          value={search}
+          className="rounded border border-slate-300"
+          onChange={e => dispatch(setGroupsSearch(e.target.value))} />
       </div>
-      <ul>
-        {items.map(item => (<li key={item.id}>{item.name}</li>))}
+      <ul className="py-2">
+        {items.map(item => (
+          <li
+            className="h-16 w-16 text-center inline-block p-2 border border-slate-300 rounded mr-2"
+            key={item.id}>{item.name}</li>
+        ))}
       </ul>
     </section>
   )

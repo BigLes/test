@@ -12,12 +12,19 @@ export const UsersList = () => {
 
   return (
     <section>
-      <div>
-        <span>Users:</span>
-        <input value={search} onChange={e => dispatch(setUserSearch(e.target.value))} />
+      <div className="mb-2">
+        <h2 className="uppercase inline mr-2">Users:</h2>
+        <input
+          value={search}
+          className="rounded border border-slate-300"
+          onChange={e => dispatch(setUserSearch(e.target.value))} />
       </div>
-      <ul>
-        {items.map(item => (<li key={item.id}>{item.name}</li>))}
+      <ul className="">
+        {items.map(item => (
+          <li
+            className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
+            key={item.id}>{item.name}</li>
+        ))}
       </ul>
     </section>
   )

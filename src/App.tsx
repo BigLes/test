@@ -15,8 +15,8 @@ function App() {
   }, [dispatch]);
 
   return (
-    <main>
-      <h1 className="text-sm font-bold underline">Users Management</h1>
+    <main className="w-full h-full p-4 bg-slate-100">
+      <h1 className="text-center mb-2">Users Management</h1>
       <GroupsList />
       <UsersList />
     </main>
