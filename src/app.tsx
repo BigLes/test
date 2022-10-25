@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
-import './app.css';
-import { useAppDispatch } from './hooks/store';
-import { fetchGroups } from './store/groupsSlice';
-import { fetchUsers } from './store/usersSlice';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import './app.css';
 import { Home } from './pages/home';
 import { CreateGroup } from './pages/createGroup';
 import { CreateUser } from './pages/createUser';
@@ -11,13 +8,6 @@ import { GroupProfile } from './pages/groupProfile';
 import { UserProfile } from './pages/userProfile';
 
 function App() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchGroups());
-    dispatch(fetchUsers());
-  }, [dispatch]);
-
   return (
     <main className="w-full h-full p-4 bg-slate-100 flex flex-col">
       <h1 className="text-center mb-2">Users Management</h1>
