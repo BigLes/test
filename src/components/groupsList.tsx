@@ -27,19 +27,19 @@ export const GroupsList = () => {
             }}>Clear</button>
         )}
       </div>
-      <ul className="overflow-x-auto whitespace-nowrap">
+      <ul className="overflow-x-auto whitespace-nowrap pb-2">
         <Link to="create-group">
           <li
-            className="h-16 w-16 leading-16 text-center inline-block align-bottom	border border-slate-300 rounded mr-2">+
-          </li>
+            className="h-16 w-16 leading-16 text-center inline-block align-bottom	border
+            border-slate-300 rounded mr-2 border-dashed">+</li>
         </Link>
         {items
           .filter(item => item.name.toUpperCase().includes(search.toUpperCase()))
           .map(item => (
             <li
               style={{ borderColor: item.color }}
-              className="h-16 w-16 leading-16 text-center inline-block align-bottom	border rounded mr-2"
-              key={item.id}>{item.name}</li>
+              className="h-16 px-4 leading-16 text-center inline-block align-bottom	border rounded mr-2"
+              key={item.id}><Link to={`group/${item.id}`}>{item.name}</Link></li>
           ))}
       </ul>
     </section>

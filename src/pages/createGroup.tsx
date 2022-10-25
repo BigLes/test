@@ -15,10 +15,10 @@ export const CreateGroup = () => {
       className="rounded border border-slate-300 h-7 px-1 ml-2"
       onChange={e => setName(e.target.value)} />
     <button
+      disabled={!name}
       onClick={() => {
         dispatch(createGroup({ name })).then(() => navigate('/'));
       }}
-      className="border border-slate-300 px-2 rounded h-7 ml-2">Create
-    </button>
+      className="border border-slate-300 px-2 rounded h-7 ml-2">Create</button>
   </div>;
 };

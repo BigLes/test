@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
 import { setSelectedGroup, setUserSearch } from '../store/usersSlice';
 import { UserGroupSelection } from './userGroupSelection';
+import { Link } from 'react-router-dom';
 
 export const UsersList = () => {
   const dispatch = useAppDispatch();
@@ -10,7 +11,7 @@ export const UsersList = () => {
   const filteredUsers = useMemo(() => items.filter(item => {
     return selectedGroup
       ? item.groups.includes(selectedGroup) && item.name.toUpperCase().includes(search.toUpperCase())
-      : item.name.toUpperCase().includes(search.toUpperCase())
+      : item.name.toUpperCase().includes(search.toUpperCase());
   }), [items, search, selectedGroup]);
 
   if (loading && !items.length) {
@@ -36,6 +37,9 @@ export const UsersList = () => {
         )}
       </div>
       <ul className="overflow-y-auto">
+        <Link to="/create-user">
+          <li className="h-16 w-44 leading-16 text-center border border-slate-300 border-dashed rounded mb-2">+</li>
+        </Link>
         {filteredUsers.map(item => (
           <li
             className="h-16 w-44 text-center p-2 border border-slate-300 rounded mb-2"
@@ -43,5 +47,5 @@ export const UsersList = () => {
         ))}
       </ul>
     </section>
-  )
-}
+  );
+};

@@ -21,12 +21,12 @@ export const fetchUsersApi = (): Promise<Array<User>> =>
     })));
 
 export const createGroupApi = (body: { name: string }): Promise<string> =>
-  fetch('http://localhost:3001/groups', { method: 'post', body: JSON.stringify(body) })
+  fetch(`http://localhost:3001/groups/${body.name}`, { method: 'post' })
     .then(res => res.status === 200 ? res.json() : Promise.reject(res.statusText))
     .then(json => json.groupId);
 
 export const createUserApi = (body: { name: string, group: number }): Promise<string> =>
-  fetch('http://localhost:3001/users', { method: 'post', body: JSON.stringify(body) })
+  fetch(`http://localhost:3001/users/${body.name}/${body.group}`, { method: 'post' })
     .then(res => res.status === 200 ? res.json() : Promise.reject(res.statusText))
     .then(json => json.userId);
 

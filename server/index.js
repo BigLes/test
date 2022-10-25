@@ -59,19 +59,18 @@ app.get('/users', (req, res) => {
 });
 
 // POST
-app.post('/groups', (req, res) => {
+app.post('/groups/:name', (req, res) => {
   const id = ++groupsId;
-  console.log(req.body);
-  const { name } = req.body;
+  const { name } = req.params;
   if (!name) {
     return res.status(400).send('Body is incorrect');
   }
   groups.push({ id, name, color: randomColor() });
   res.json({ id });
 });
-app.post('/users', (req, res) => {
+app.post('/users/:name/:group', (req, res) => {
   const id = ++usersId;
-  const { name, group } = req.body;
+  const { name, group } = req.params;
   if (!name || !group) {
     return res.status(400).send('Body is incorrect');
   }
