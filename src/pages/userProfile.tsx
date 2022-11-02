@@ -31,7 +31,6 @@ export const UserProfile = () => {
     <div className="mb-2">
       <h4 className="inline mr-2">Assign group:</h4>
       <Select
-        inputValue="Group"
         onChange={(selectedOption) => {
           dispatch(toggleGroupForUser({ userId: idNumber, groupId: selectedOption?.value || 0 }))
         }}
